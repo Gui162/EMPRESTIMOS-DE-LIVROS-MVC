@@ -1,6 +1,8 @@
-﻿using EmprestimoLivros.Data;
+﻿using ClosedXML.Excel;
+using EmprestimoLivros.Data;
 using EmprestimoLivros.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace EmprestimoLivros.Controllers
 {
@@ -67,6 +69,44 @@ namespace EmprestimoLivros.Controllers
             return View(emprestimo);
         }
 
+        [HttpGet]
+        public IActionResult Exportar()
+        {
+            var dados = GetDados();
+
+            using (XLWorkbook workbook = new XLWorkbook()) // usansado using pois queremos criar essa operacao utilizar ela e desaparecer com ela ,se nao usar using ela fica aberta
+            {
+                workbook.AddWorksheet(dados, "Dados Emprestimos");
+
+                using (MemoryStream ms = new MemoryStream())
+                {
+                    workbook.SaveAs(ms);
+                    return File(ms.ToArray(), "application/vnd.openxmlformats-officedocument.spredsheetml.sheet", "Empestimos.xls");
+                }
+            }
+        }
+
+        private DataTable GetDados() //esta privado pois apenas o metodo a cima vai utilizar esse de baixo
+        {
+            DataTable dataTable = new DataTable();
+
+            dataTable.TableName = "Dados Emprestimos";
+            dataTable.Columns.Add("Id", typeof(int));
+            dataTable.Columns.Add("Recebedor", typeof(string));
+            dataTable.Columns.Add("Fornecedor", typeof(string));
+            dataTable.Columns.Add("Livro", typeof(string));
+            dataTable.Columns.Add("Data Emprestimo", typeof(DateTime));
+
+            var dados = _db.Emprestimos.ToList();
+            if (dados.Count > 0)
+            {
+                dados.ForEach(emprestimos => dataTable.Rows.Add(emprestimos.Id, emprestimos.Recebedor, emprestimos.Fornecedor, emprestimos.LivroEmprestado, emprestimos.DataUltimaAtualizacao));
+            }
+
+
+            return dataTable;
+        }
+
 
         [HttpPost] // quando tem isso e POST
         public IActionResult Cadastrar(EmprestimoModel emprestimo)
@@ -107,7 +147,7 @@ namespace EmprestimoLivros.Controllers
             if (emprestimo == null)
             {
                 TempData["MessagemErro"] = "Algo deu errado, Nenhuma alteracao Foi realizada!!!";
-                return NotFound() ;
+                return NotFound();
             }
 
             _db.Emprestimos.Remove(emprestimo);

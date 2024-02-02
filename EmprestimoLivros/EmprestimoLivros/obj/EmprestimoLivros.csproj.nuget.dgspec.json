@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Gui\\Desktop\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj": {}
+    "C:\\Users\\Gui\\Desktop\\Nova pasta\\EMPRESTIMOS-DE-LIVROS-MVC\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Gui\\Desktop\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj": {
+    "C:\\Users\\Gui\\Desktop\\Nova pasta\\EMPRESTIMOS-DE-LIVROS-MVC\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Gui\\Desktop\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj",
+        "projectUniqueName": "C:\\Users\\Gui\\Desktop\\Nova pasta\\EMPRESTIMOS-DE-LIVROS-MVC\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj",
         "projectName": "EmprestimoLivros",
-        "projectPath": "C:\\Users\\Gui\\Desktop\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj",
+        "projectPath": "C:\\Users\\Gui\\Desktop\\Nova pasta\\EMPRESTIMOS-DE-LIVROS-MVC\\EmprestimoLivros\\EmprestimoLivros\\EmprestimoLivros.csproj",
         "packagesPath": "C:\\Users\\Gui\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Gui\\Desktop\\EmprestimoLivros\\EmprestimoLivros\\obj\\",
+        "outputPath": "C:\\Users\\Gui\\Desktop\\Nova pasta\\EMPRESTIMOS-DE-LIVROS-MVC\\EmprestimoLivros\\EmprestimoLivros\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -44,6 +44,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "ClosedXML": {
+              "target": "Package",
+              "version": "[0.102.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[8.0.1, )"
